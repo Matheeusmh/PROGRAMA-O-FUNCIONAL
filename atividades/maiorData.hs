@@ -1,0 +1,7 @@
+maiorData :: (Int, Int, Int) -> (Int, Int, Int) -> (Int, Int, Int)
+maiorData (a1, a2, a3) (b1, b2, b3) = if a3 > b3 then (a1, a2, a3)
+                              else if a3 < b3 then (b1, b2, b3)
+                                   else if a2 > b2 then (a1, a2, a3)
+                                        else if a2 < b2 then (b1, b2, b3)
+                                             else if a1 > a2 then (a1, a2, a3) 
+                                                  else (b1, b2, b3)
