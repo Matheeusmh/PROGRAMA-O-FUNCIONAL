@@ -84,7 +84,7 @@ interseccaoRETAS (a1, b1) (a2, b2) = (x, y)
 
 mdcDois :: Int -> Int -> Int
 mdcDois a b |b == 0 = a 
-            |otherwise = mdc b (mod a b)
+            |otherwise = mdcDois b (mod a b)
 
 mdc :: Int -> Int -> Int -> Int 
 mdc a b c = mdcDois a (mdcDois b c)
@@ -94,3 +94,7 @@ mmcDois a b = div (abs (a * b)) (mdcDois a b)
 
 mmc :: Int -> Int -> Int -> Int 
 mmc a b c = mmcDois a (mmcDois b c)
+
+teste :: [a] -> Int 
+teste [] = 0
+teste (_:xs) = 1 + teste xs
