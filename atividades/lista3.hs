@@ -57,3 +57,43 @@ diferentes :: Eq a => [a] -> Bool
 diferentes [] = True
 diferentes (x:xs) = not (x `elem` xs) && diferentes xs
         
+retornaSupNovo :: Int -> [Int] -> Int
+retornaSupNovo n xs =  count [x | x <- xs, x > n]
+    where
+        count [] = 0
+        count (x:xs) = 1 + count xs
+
+mult_listas :: [Int] -> [Int] -> [[Int]]
+mult_listas xs ys = [[x * y | y <- ys] | x <- xs]
+
+diferentesA :: Eq a => [a] -> Bool
+diferentesA [] = True
+diferentesA (x:xs) = not (x `elem` xs) && diferentesA xs
+
+intersecao :: Eq t => [t] -> [t] -> [t]
+intersecao as bs = [b | b <- bs, (elem b as)]
+
+nonAbs :: [Int] -> [Int]
+nonAbs xs = [x | x <- xs, x < 0]
+
+distancias :: [(Double, Double)] -> [Double] 
+distancias xs = [ sqrt(((x - 0) ^ 2) + ((y - 0) ^ 2))| (x, y) <-xs]
+
+tabuada :: Int -> [(Int, Int, Int)] 
+tabuada n = [(n, y, n * y) | y <-aux]
+    where
+        aux = [1..10]
+
+produto :: Num a => [a] -> a
+produto xs = foldl1 (*) xs
+
+prefixo :: Eq a => [a] -> [a] -> Bool
+prefixo xs ys = xs == elimina ys    
+    where
+        elimina ys = reverse (drop ((length ys) - (length xs)) (reverse ys))
+
+subSeq :: Eq a => [a] -> [a] -> Bool
+subSeq xs ys = xs == aux xs ys 
+ where
+    aux xs [] = False
+    
