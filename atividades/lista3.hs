@@ -91,9 +91,37 @@ prefixo :: Eq a => [a] -> [a] -> Bool
 prefixo xs ys = xs == elimina ys    
     where
         elimina ys = reverse (drop ((length ys) - (length xs)) (reverse ys))
-
-subSeq :: Eq a => [a] -> [a] -> Bool
-subSeq xs ys = xs == aux xs ys 
- where
-    aux xs [] = False
     
+supMedia :: [Double] -> [Double]
+supMedia xs = [x | x <- xs, x > (media xs)]
+    where
+        soma [] = 0
+        soma (x:xs) = x + (soma xs)
+        media xs = (soma xs) / fromIntegral (length xs)
+
+maximos :: [(Double, Double)] -> [Double]
+maximos xs = [maior x y| (x,y) <- xs]
+    where
+        maior x y | x > y = x
+                  | otherwise = y
+
+abrev :: [String] -> [String]
+abrev xs = [auxAbrev x | x <- xs]
+    where
+        auxAbrev (y:ys) = [y] ++ ". " ++ ultimo (reverse ys)
+            where
+                ultimo [] = []
+                ultimo (' ':ys) = []
+                ultimo (y:ys) = ultimo ys ++ [y]
+
+rotacoes :: [a] -> [[a]]
+rotacoes [] = [[]]
+rotacoes xs = [take (length xs) (drop n (cycle xs)) | n <- [0..(length xs - 1)]]
+
+duplique :: [a] -> [a]
+duplique [] = []
+duplique (x:xs) = x : x : duplique xs
+
+rotaciona :: Int -> [a] ->  [a]
+rotaciona 0 xs  = xs
+rotaciona n (x:xs) = rotaciona (n - 1) (xs ++ [x])
